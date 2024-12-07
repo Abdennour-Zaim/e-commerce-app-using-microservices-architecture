@@ -1,7 +1,8 @@
 package com.azaim.ecommerce.customer;
 
 import com.azaim.ecommerce.exception.CustomerNotFoundException;
-import jakarta.validation.Valid;
+
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,17 @@ import static java.lang.String.format;
 
 @Service
 @RequiredArgsConstructor
+@Data
 public class CustomerService {
+
     private final CustomerRepository repository;
     private final CustomerMapper mapper;
-    public String createCustomer(@Valid CustomerRequest request) {
+    public String createCustomer(CustomerRequest request) {
         var customer=repository.save(mapper.toCustomer(request));
         return customer.getId();
     }
 
-    public void updateCustomer(@Valid CustomerRequest request) {
+    public void updateCustomer(CustomerRequest request) {
         var customer=repository.findById(request.id()).
                 orElseThrow(()-> new CustomerNotFoundException(
                         format("Cannot update customer:: No customer found with the provided ID:: %s", request.id())
