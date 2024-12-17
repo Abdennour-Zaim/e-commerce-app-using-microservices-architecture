@@ -2,7 +2,7 @@
 
 Microservices Architecture [Spring boot 3 | Spring Cloud]
 
-This application is developed for a business owner to simplify the process and contribute significantly  to 
+This application is developed as a personal project to simplify the process and contribute significantly  to 
 the overall efficiency and scalability of an online venture.
 
 
@@ -23,7 +23,7 @@ When a customer places an order ,the order microservice checks the business requ
 
 The notification  system will consume two types of messages: the order confirmation and the payment confirmation. It will send emails to the customer and finally persist the emails in the notification database. And all this ecosystem will have a distributed tracing using ZIPKIN.
 
-I'm currently working on the frontend part of this project.
+I'm currently working on the frontend part of this project ( I'll be using Angular).
 
 <img src="images/app%20architecture.png" style="max-width: 100%; height: auto;" alt="architecture image">
 
@@ -43,8 +43,26 @@ For distributed tracing, I used Zipkin to give me all the flow from the entering
 
 <img src="images/Zipkin%20for%20distributed%20tracing.PNG" style="max-width: 100%; height: auto;" alt="Zipkin">
 
-
-
+Implemented using :
+<ul>
+<li> Spring Boot 3.3.6</li>
+<li> Spring WebFlux, Validation</li>
+<li> Spring Data JPA</li>
+<li> PostgresSQL</li>
+<li> Mongo DB</li>
+<li> Actuator</li>
+<li> Lombok</li>
+<li> Distributed Tracing: Zipkin</li>
+<li> Routing : Openfeign</li>
+<li> Distributed Tracing: Zipkin</li>
+<li> Eureka Discovery</li>
+<li> Load Balancing: Spring Cloud Gateway</li>
+<li> Kafka</li>
+<li> Container: Docker</li>
+<li> Thymeleaf: email templates </li>
+<li>Emails: JavaMailSender</li>
+<li>Logging : slf4j</li>
+</ul>
 
 
 
