@@ -13,13 +13,16 @@ import com.azaim.ecommerce.product.ProductClient;
 import com.azaim.ecommerce.product.PurchaseRequest;
 import com.azaim.ecommerce.product.PurchaseResponse;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -31,11 +34,12 @@ public class OrderService {
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
     private final PaymentClient paymentClient;
-    public Integer createOrder(@Valid OrderRequest request) {
+
+    public Integer createOrder(OrderRequest request) {
         //checking the customer --> openFeign
         var customer=this.customerClient.findCustomerById(request.customerId())
                 .orElseThrow(()-> new BusinessException("Cannot create order:: No customer exists with the provided ID: "));
-
+        log.info(" customer id : "+customer.id());
         //purchasing the product-->product micro-service
         var purchasedProducts = this.productClient.purchaseProducts(request.products());
 
